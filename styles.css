@@ -240,3 +240,8 @@ p {
     height: 50px;
     width: 50px;
 }
+
+.thumbnail-box-big {
+    height: 80px;
+    width: 80px;
+}

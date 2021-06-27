@@ -42,6 +42,13 @@ let data = [{
     },
 ]
 
+let thumbnailCounter = 0;
+let fileName = 1;
+for (thumbnailCounter; thumbnailCounter < data.length; thumbnailCounter++) {
+    $('#thumbnails').append('<div id="thumbnail-id-' + thumbnailCounter + '" data-number="' + thumbnailCounter + '" class="thumbnail-box"><img class="thumbnail" src="photos/' + fileName + '.jpg"></div>');
+    fileName++;
+};
+
 function loadPhoto(photoNumber) {
     $('#photo').attr('src', data[currentPhoto].photo);
     $('#photo-title').text(data[currentPhoto].title);
@@ -51,21 +58,19 @@ function loadPhoto(photoNumber) {
 loadPhoto(currentPhoto);
 
 $('.right-arrow').click(function() {
-    currentPhoto++;
-    loadPhoto(currentPhoto);
+    if (currentPhoto < data.length - 1) {
+        currentPhoto++;
+        loadPhoto(currentPhoto);
+    }
 });
 
 $('.left-arrow').click(function() {
-    currentPhoto--;
-    loadPhoto(currentPhoto);
+    if (currentPhoto > 0) {
+        currentPhoto--;
+        loadPhoto(currentPhoto);
+    }
 });
 
-let thumbnailCounter;
-let fileName = 1;
-for (thumbnailCounter = 0; thumbnailCounter < 8; thumbnailCounter++) {
-    $('#thumbnails').append('<div data-number="' + thumbnailCounter + '" class="thumbnail-box"><img class="thumbnail" src="photos/' + fileName + '.jpg"></div>');
-    fileName++;
-};
 
 $('.thumbnail-box').click(function() {
     currentPhoto = $(this).attr('data-number');
